@@ -14,7 +14,25 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/result"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textSize="30sp"
+        android:text="@string/result_placeholder" />
+
+    <Button
+        android:id="@+id/readValueFromCallable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/readValueButton"
+        android:padding="30dp"
+        android:text="@string/run_using_from_callable" />
+
+    <Button
+        android:id="@+id/readValueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="30dp"
+        android:text="@string/run_expensive_method" />
 </RelativeLayout>

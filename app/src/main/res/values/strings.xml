@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">CasterRxJava</string>
+    <string name="app_name">RxJava - fromCallable()</string>
     <string name="action_settings">Settings</string>
+    <string name="run_expensive_method">Run expensive method</string>
+    <string name="reading">Reading…</string>
+    <string name="result_placeholder">Result will be shown here</string>
+    <string name="run_using_from_callable">Run using `fromCallable()`</string>
 </resources>
