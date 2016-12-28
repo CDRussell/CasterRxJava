@@ -13,6 +13,16 @@
     tools:context="com.cdrussell.caster.rx.casterrxjava.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_below="@+id/result"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
     <TextView
         android:id="@+id/result"
         android:layout_width="match_parent"
