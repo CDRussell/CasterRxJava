@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,15 +33,19 @@ public class MainActivity extends AppCompatActivity {
     private void bindViews() {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         naiveButton = (Button) findViewById(R.id.readValueButton);
-        cleverButton = (Button) findViewById(R.id.readValueFromCallable);
+        cleverButton = (Button) findViewById(R.id.readValueDefer);
         resultTextView = (TextView) findViewById(R.id.result);
 
         naiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showProgress();
-                String result = Database.readValue();
-                resultTextView.setText(result);
+                try {
+                    resultTextView.setText(Database.readValue());
+                } catch (IOException e) {
+                    resultTextView.setText(e.getMessage());
+                }
+
                 hideProgress();
             }
         });
@@ -48,16 +54,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showProgress();
-                Observable.fromCallable(Database::readValue)
-                        .subscribeOn(Schedulers.io())
+
+                Observable<String> deferred = Observable.defer(() -> {
+                    try {
+                        return Observable.just(Database.readValue());
+                    } catch (IOException e) {
+                        return Observable.error(e);
+                    }
+                });
+
+                deferred.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(result -> {
-                            resultTextView.setText(result);
+                        .subscribe(value -> {
+                            resultTextView.setText(value);
                             hideProgress();
                         });
             }
         });
+
     }
+
 
     private void showProgress() {
         progressBar.setVisibility(View.VISIBLE);

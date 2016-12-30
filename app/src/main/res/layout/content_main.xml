@@ -31,12 +31,12 @@
         android:text="@string/result_placeholder" />
 
     <Button
-        android:id="@+id/readValueFromCallable"
+        android:id="@+id/readValueDefer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/readValueButton"
         android:padding="30dp"
-        android:text="@string/run_using_from_callable" />
+        android:text="@string/run_using_defer" />
 
     <Button
         android:id="@+id/readValueButton"
