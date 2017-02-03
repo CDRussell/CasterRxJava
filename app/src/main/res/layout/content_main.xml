@@ -31,15 +31,23 @@
         android:text="@string/result_placeholder" />
 
     <Button
+        android:id="@+id/readValueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/readValueDefer"
+        android:padding="30dp"
+        android:text="@string/run_expensive_method" />
+
+    <Button
         android:id="@+id/readValueDefer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/readValueButton"
+        android:layout_above="@+id/readValueFromCallable"
         android:padding="30dp"
         android:text="@string/run_using_defer" />
 
     <Button
-        android:id="@+id/readValueButton"
+        android:id="@+id/readValueFromCallable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
