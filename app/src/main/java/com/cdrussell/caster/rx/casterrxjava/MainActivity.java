@@ -23,16 +23,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         bindViews();
     }
 
     private void bindViews() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        naiveButton = (Button) findViewById(R.id.readValueButton);
-        cleverButton = (Button) findViewById(R.id.readValueFromCallable);
-        resultTextView = (TextView) findViewById(R.id.result);
+        progressBar = findViewById(R.id.progressBar);
+        naiveButton = findViewById(R.id.readValueButton);
+        cleverButton = findViewById(R.id.readValueFromCallable);
+        resultTextView = findViewById(R.id.result);
 
         naiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showProgress();
+
                 Observable.fromCallable(Database::readValue)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
