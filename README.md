@@ -1,1 +1,1 @@
-# Caster.io - RxJava `defer()`
+# Caster.io - RxJava `defer()` and `fromCallable()`
